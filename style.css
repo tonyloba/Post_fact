@@ -219,4 +219,16 @@ ul {
   .fact-form select {
     width: auto;
   }
+
+  .flag-button {
+    width: 100px;
+    height: 50px;
+    background-image: url("images/au.jpg"); /* Replace with the path to your flag image */
+    background-size: cover; /* Ensures the image covers the entire button */
+    background-position: center; /* Centers the image */
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
 }
