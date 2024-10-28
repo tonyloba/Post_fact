@@ -33,26 +33,15 @@ const initialFacts = [
 ];
 
 const CATEGORIES = [
-  { name: "technology", color: "#fff" },
-  { name: "science", color: "#fff" },
-  { name: "finance", color: "#fff" },
-  { name: "society", color: "#fff" },
-  { name: "entertainment", color: "#fff" },
-  { name: "health", color: "#fff" },
-  { name: "history", color: "#fff" },
-  { name: "news", color: "#fff" },
+  { name: "technology", color: "#3b82f6" },
+  { name: "science", color: "#16a34a" },
+  { name: "finance", color: "#ef4444" },
+  { name: "society", color: "#eab308" },
+  { name: "entertainment", color: "#db2777" },
+  { name: "health", color: "#14b8a6" },
+  { name: "history", color: "#f97316" },
+  { name: "news", color: "#8b5cf6" },
 ];
-
-// const CATEGORIES = [
-//   { name: "technology", color: "#3b82f6" },
-//   { name: "science", color: "#16a34a" },
-//   { name: "finance", color: "#ef4444" },
-//   { name: "society", color: "#eab308" },
-//   { name: "entertainment", color: "#db2777" },
-//   { name: "health", color: "#14b8a6" },
-//   { name: "history", color: "#f97316" },
-//   { name: "news", color: "#8b5cf6" },
-// ];
 
 // Selecting DOM Elements:
 const btn = document.querySelector(".btn-open");
@@ -62,8 +51,6 @@ const factsList = document.querySelector(".facts-list");
 // Switch form visibility:
 btn.addEventListener("click", function () {
   console.log("Clicked");
-  //Creat DOM Elements and render post in the list
-  factsList.innerHTML = "";
 
   if (form.classList.contains("hidden")) {
     form.classList.remove("hidden");
@@ -74,17 +61,11 @@ btn.addEventListener("click", function () {
   }
 });
 
-function calcPostAge(year) {
-  const currentYear = new Date().getFullYear();
-  const age = currentYear - year;
-  if (age >= 0) return age;
-  else return `Wrong Year! Should less or equal ${currentYear}`;
-}
+//Creat DOM Elements and render post in the list
+factsList.innerHTML = "";
+//createFactsList(initialFacts);
 
-let votesYes = 0;
-let votesNo = 0;
-let votesDontKnow = 0;
-let votesBadIdea = 0;
+// Load Data from SupaBase:
 
 loadPosts();
 
@@ -103,27 +84,38 @@ async function loadPosts() {
   );
   const data = await response.json();
   createFactsList(data);
-
-  //console.log(data);
+  console.log(data);
 }
 
-function createFactsList(dataArray) {
-  // factsList.insertAdjacentHTML("afterbegin", "<li>Jonas</li>");
+// Render Facts/Posts on the html page:
 
-  const htmlArr = initialFacts.map(
+function createFactsList(dataArray) {
+  const htmlArr = dataArray.map(
     (fact) => `<li class="fact">
     <p>
-    ${fact.text}</li>`
-    //   <a
-    //     class="source"
-    //     href="${fact.source}"
-    //     target="_blank"
-    //   >(Source)</a>
-    // </p>
-    // <span class="tag" style="background-color: ${
-    //   CATEGORIES.find((cat) => cat.name === fact.category).color
-    // }">${fact.category}</span>
+    ${fact.text}
+        <a
+          class="source"
+          href="${fact.links}"
+          target="_blank"
+          >(Source)</a>
+        </p>
+          <span class="tag" style="background-color: #3b82f6"
+                >${fact.country}</span>
+    </li>`
   );
   const html = htmlArr.join("");
   factsList.insertAdjacentHTML("afterbegin", html);
 }
+
+function calcPostAge(year) {
+  const currentYear = new Date().getFullYear();
+  const age = currentYear - year;
+  if (age >= 0) return age;
+  else return `Wrong Year! Should less or equal ${currentYear}`;
+}
+
+let votesYes = 0;
+let votesNo = 0;
+let votesDontKnow = 0;
+let votesBadIdea = 0;
