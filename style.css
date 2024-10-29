@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,7 +15,6 @@ body {
   display: none !important;
 }
 
-/* MAIN LAYOUT */
 .container {
   max-width: 1500px;
   margin: 0 auto;
@@ -39,8 +38,6 @@ body {
     grid-template-columns: 1fr;
   }
 }
-
-/* ELEMENTS */
 
 .logo {
   display: flex;
@@ -172,7 +169,6 @@ ul {
   background-image: none;
 }
 
-/* FORM */
 .fact-form {
   background-color: #44403c;
   margin-bottom: 40px;
@@ -223,16 +219,4 @@ ul {
   .fact-form select {
     width: auto;
   }
-
-  /* .flag-button {
-    width: 100px;
-    height: 50px;
-    background-image: url("images/au.jpg"); 
-    background-size: cover; 
-    background-position: center; 
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  } */
-}
+} */
